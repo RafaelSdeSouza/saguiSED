@@ -1,0 +1,72 @@
+---
+title: "References"
+---
+
+If you use `saguiSED`, cite the SED-fitting backend you used, the segmentation
+package that produced the regional photometry, and the relevant method papers.
+
+## Method papers
+
+### sagui
+
+de Souza, R. S. et al. (2026). **SAGUI: SED-based Segmentation of
+Multi-band Galaxy Images -- Application to JADES in GOODS-South**.
+arXiv:2604.18812. <https://doi.org/10.48550/arXiv.2604.18812>
+
+### capivara
+
+de Souza, R. S. et al. (2025). **capivara: a spectral-based segmentation
+method for IFU data cubes**. *Monthly Notices of the Royal Astronomical
+Society*, 539(4), 3166--3179. <https://doi.org/10.1093/mnras/staf688>
+
+### Bagpipes
+
+Carnall, A. C., McLure, R. J., Dunlop, J. S., & Davé, R. (2018).
+**Inferring the star formation histories of massive quiescent galaxies with
+BAGPIPES: evidence for multiple quenching mechanisms**. *Monthly Notices of
+the Royal Astronomical Society*, 480(4), 4379--4401.
+<https://doi.org/10.1093/mnras/sty2169>
+
+For installation and backend-specific citation guidance, see the
+[Bagpipes documentation](https://bagpipes.readthedocs.io/en/latest/).
+
+## Suggested BibTeX
+
+```bibtex
+@misc{sagui2026,
+  author = {de Souza, Rafael S. and others},
+  title = {{SAGUI}: {SED}-based Segmentation of Multi-band Galaxy Images --
+           Application to {JADES} in {GOODS}-South},
+  year = {2026},
+  eprint = {2604.18812},
+  archivePrefix = {arXiv},
+  primaryClass = {astro-ph.IM},
+  doi = {10.48550/arXiv.2604.18812}
+}
+
+@article{capivara2025,
+  author = {de Souza, Rafael S. and others},
+  title = {capivara: a spectral-based segmentation method for {IFU} data cubes},
+  journal = {Monthly Notices of the Royal Astronomical Society},
+  volume = {539},
+  number = {4},
+  pages = {3166--3179},
+  year = {2025},
+  doi = {10.1093/mnras/staf688}
+}
+
+@article{bagpipes2018,
+  author = {Carnall, A. C. and McLure, R. J. and Dunlop, J. S. and Dav{\'e}, R.},
+  title = {Inferring the star formation histories of massive quiescent galaxies
+           with {BAGPIPES}: evidence for multiple quenching mechanisms},
+  journal = {Monthly Notices of the Royal Astronomical Society},
+  volume = {480},
+  number = {4},
+  pages = {4379--4401},
+  year = {2018},
+  doi = {10.1093/mnras/sty2169}
+}
+```
+
+When `saguiSED` receives a software DOI, cite that DOI in addition to the method
+and backend papers above.
