@@ -142,6 +142,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./ecosystem.html"> 
 <span class="menu-text">Ecosystem</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./references.html"> 
+<span class="menu-text">References</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
@@ -215,6 +219,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="from-sagui-to-saguised" class="level2">
 <h2 class="anchored" data-anchor-id="from-sagui-to-saguised">From sagui to saguiSED</h2>
 <p>Run the segmentation in <code>sagui</code>, then extract flux-conserving regional SEDs.</p>
+<div class="image-card medium-image">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/showcase/sagui10_n20.png" class="img-fluid figure-img"></p>
+<figcaption>Sagui-10 segmentation used as a representative regional support map.</figcaption>
+</figure>
+</div>
+</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>seg <span class="ot">&lt;-</span> <span class="fu">segment_regions</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">input =</span> cube,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Ncomp =</span> <span class="dv">20</span>,</span>
@@ -293,10 +305,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">base_size =</span> <span class="dv">12</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Filter points are colored by wavelength. The model line is kept visually separate from the observed photometry so the plot remains readable on the website and in notebooks.</p>
+<div class="image-card wide-image">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/showcase/sagui8_region8_bagpipes_sedfit.png" class="img-fluid figure-img"></p>
+<figcaption>Example Bagpipes SED fit for Sagui-8 region 8 using SAGUI regional photometry.</figcaption>
+</figure>
+</div>
+</div>
 </section>
 <section id="property-maps" class="level2">
 <h2 class="anchored" data-anchor-id="property-maps">Property maps</h2>
 <p>Paint fitted region summaries back to the image plane:</p>
+<div class="image-card medium-image">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/showcase/sagui10_sigma_sfr.png" class="img-fluid figure-img"></p>
+<figcaption>Example star-formation surface-density map painted back onto a SAGUI segmentation.</figcaption>
+</figure>
+</div>
+</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>maps <span class="ot">&lt;-</span> <span class="fu">paint_sed_properties</span>(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  seg<span class="sc">$</span>cluster_map,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  fit,</span>
@@ -343,6 +371,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">path =</span> <span class="st">"example_property_cube_smooth.fits"</span></span>
 <span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is a post-processing estimator. It does not refit the photometry and does not change the independent Bagpipes summaries.</p>
+<div class="image-card medium-image">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/showcase/sagui11_lsb_copula.png" class="img-fluid figure-img"></p>
+<figcaption>Sagui-11 low-surface-brightness segmentation shown as a more complex support map.</figcaption>
+</figure>
+</div>
+</div>
 </section>
 <section id="units" class="level2">
 <h2 class="anchored" data-anchor-id="units">Units</h2>

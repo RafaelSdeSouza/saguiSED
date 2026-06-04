@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ecosystem – saguiSED</title>
+<title>References – saguiSED</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="floating nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -139,11 +139,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Backends</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./ecosystem.html" aria-current="page"> 
+    <a class="nav-link" href="./ecosystem.html"> 
 <span class="menu-text">Ecosystem</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./references.html"> 
+    <a class="nav-link active" href="./references.html" aria-current="page"> 
 <span class="menu-text">References</span></a>
   </li>  
 </ul>
@@ -163,28 +163,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul class="collapse">
-  <li><a href="#package-roles" id="toc-package-roles" class="nav-link active" data-scroll-target="#package-roles">Package roles</a></li>
-  <li><a href="#why-separate-packages" id="toc-why-separate-packages" class="nav-link" data-scroll-target="#why-separate-packages">Why separate packages?</a></li>
-  <li><a href="#data-handoff" id="toc-data-handoff" class="nav-link" data-scroll-target="#data-handoff">Data handoff</a></li>
-  <li><a href="#regularization-layer" id="toc-regularization-layer" class="nav-link" data-scroll-target="#regularization-layer">Regularization layer</a></li>
-  </ul>
-</nav>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Ecosystem</h1>
+<h1 class="title">References</h1>
 </div>
 
 
@@ -201,56 +187,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>The goal is a modular family of packages rather than one package that does everything. Each package should have a narrow scientific responsibility and a clear data handoff.</p>
-<section id="package-roles" class="level2">
-<h2 class="anchored" data-anchor-id="package-roles">Package roles</h2>
-<div class="feature-grid">
-<section id="sagui" class="level3 feature-card">
+<p>If you use <code>saguiSED</code>, cite the SED-fitting backend you used, the segmentation package that produced the regional photometry, and the relevant method papers.</p>
+<section id="method-papers" class="level2">
+<h2 class="anchored" data-anchor-id="method-papers">Method papers</h2>
+<section id="sagui" class="level3">
 <h3 class="anchored" data-anchor-id="sagui">sagui</h3>
-<p>Photometric segmentation of broadband or medium-band image cubes. The main science product is a segmentation map and flux-conserving regional photometry.</p>
+<p>de Souza, R. S. et al.&nbsp;(2026). <strong>SAGUI: SED-based Segmentation of Multi-band Galaxy Images – Application to JADES in GOODS-South</strong>. arXiv:2604.18812. <a href="https://doi.org/10.48550/arXiv.2604.18812" class="uri">https://doi.org/10.48550/arXiv.2604.18812</a></p>
 </section>
-<section id="saguised" class="level3 feature-card">
-<h3 class="anchored" data-anchor-id="saguised">saguiSED</h3>
-<p>SED fitting for the regional photometry exported by <code>sagui</code>. It handles filter sets, optional backend calls, SED-fit plots, physical-property maps, and post-fit map regularization.</p>
-</section>
-<section id="capivara" class="level3 feature-card">
+<section id="capivara" class="level3">
 <h3 class="anchored" data-anchor-id="capivara">capivara</h3>
-<p>Spectral segmentation and IFU-oriented workflows. Spectral fitting belongs in <code>capivara</code> or in a capivara-specific companion package, not in <code>saguiSED</code>.</p>
+<p>de Souza, R. S. et al.&nbsp;(2025). <strong>capivara: a spectral-based segmentation method for IFU data cubes</strong>. <em>Monthly Notices of the Royal Astronomical Society</em>, 539(4), 3166–3179. <a href="https://doi.org/10.1093/mnras/staf688" class="uri">https://doi.org/10.1093/mnras/staf688</a></p>
 </section>
-</div>
+<section id="bagpipes" class="level3">
+<h3 class="anchored" data-anchor-id="bagpipes">Bagpipes</h3>
+<p>Carnall, A. C., McLure, R. J., Dunlop, J. S., &amp; Davé, R. (2018). <strong>Inferring the star formation histories of massive quiescent galaxies with BAGPIPES: evidence for multiple quenching mechanisms</strong>. <em>Monthly Notices of the Royal Astronomical Society</em>, 480(4), 4379–4401. <a href="https://doi.org/10.1093/mnras/sty2169" class="uri">https://doi.org/10.1093/mnras/sty2169</a></p>
+<p>For installation and backend-specific citation guidance, see the <a href="https://bagpipes.readthedocs.io/en/latest/">Bagpipes documentation</a>.</p>
 </section>
-<section id="why-separate-packages" class="level2">
-<h2 class="anchored" data-anchor-id="why-separate-packages">Why separate packages?</h2>
-<p>Keeping SED fitting outside <code>sagui</code> avoids forcing users to install heavy Python dependencies when they only need segmentation and regional photometry. It also makes it easier to add or replace SED-fitting backends without changing the core segmentation code.</p>
-<p>The same philosophy should hold for future packages:</p>
-<ul>
-<li>segmentation packages define regions and extract fluxes</li>
-<li>fitting packages infer physical quantities from those fluxes</li>
-<li>visualization packages can build paper figures from saved products</li>
-<li>survey-specific packages can encode filter sets and data-release conventions</li>
-</ul>
 </section>
-<section id="data-handoff" class="level2">
-<h2 class="anchored" data-anchor-id="data-handoff">Data handoff</h2>
-<p>The handoff between packages should be boring and explicit: CSV tables for regional photometry and FITS files for image-plane maps.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sed <span class="ot">&lt;-</span> <span class="fu">as_sagui_sed_table</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"region_seds_wide.csv"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">filter_set =</span> <span class="fu">lsst_filter_set</span>(),</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">unit =</span> <span class="st">"nJy"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">redshift =</span> <span class="fl">0.2</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This keeps downstream SED fitting reproducible even when the segmentation package changes.</p>
-</section>
-<section id="regularization-layer" class="level2">
-<h2 class="anchored" data-anchor-id="regularization-layer">Regularization layer</h2>
-<p>Graph-Laplacian smoothing is implemented as a post-fit map estimator in <code>saguiSED</code>, because it acts on region-level physical properties rather than on the original image cube. The independent backend summaries remain available and should be retained for tables and uncertainty checks.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>maps_smooth <span class="ot">&lt;-</span> <span class="fu">smooth_sed_property_maps</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> seg<span class="sc">$</span>cluster_map,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fit =</span> fit,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">lambda =</span> <span class="dv">3</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">adjacency =</span> <span class="st">"queen"</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>For the paper, this distinction matters: the SED fitting is independent by region; the smoothed maps are spatially regularized summaries of those independent fits.</p>
+<section id="suggested-bibtex" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-bibtex">Suggested BibTeX</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">sagui2026</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {de Souza, Rafael S. and others},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {{SAGUI}: {SED}-based Segmentation of Multi-band Galaxy Images --</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>           Application to {JADES} in {GOODS}-South},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {2026},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">eprint</span> = {2604.18812},</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">archivePrefix</span> = {arXiv},</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">primaryClass</span> = {astro-ph.IM},</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">doi</span> = {10.48550/arXiv.2604.18812}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">capivara2025</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {de Souza, Rafael S. and others},</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {capivara: a spectral-based segmentation method for {IFU} data cubes},</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {Monthly Notices of the Royal Astronomical Society},</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span> = {539},</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span> = {4},</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span> = {3166--3179},</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {2025},</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">doi</span> = {10.1093/mnras/staf688}</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">bagpipes2018</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Carnall, A. C. and McLure, R. J. and Dunlop, J. S. and Dav{<span class="ch">\'</span>e}, R.},</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {Inferring the star formation histories of massive quiescent galaxies</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>           with {BAGPIPES}: evidence for multiple quenching mechanisms},</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {Monthly Notices of the Royal Astronomical Society},</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span> = {480},</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="dt">number</span> = {4},</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="dt">pages</span> = {4379--4401},</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {2018},</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="dt">doi</span> = {10.1093/mnras/sty2169}</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>When <code>saguiSED</code> receives a software DOI, cite that DOI in addition to the method and backend papers above.</p>
 
 
 </section>

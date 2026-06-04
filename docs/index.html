@@ -142,6 +142,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./ecosystem.html"> 
 <span class="menu-text">Ecosystem</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./references.html"> 
+<span class="menu-text">References</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
@@ -185,25 +189,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   <div class="hero-visuals">
     <div class="hero-visual-card">
-      <div class="sed-card-preview" aria-label="Stylized SED fitting preview">
-        <svg viewbox="0 0 420 300" role="img">
-          <rect x="54" y="178" width="22" height="74" class="filter" fill="#5A45B8"></rect>
-          <rect x="93" y="150" width="26" height="102" class="filter" fill="#2F80ED"></rect>
-          <rect x="143" y="123" width="30" height="129" class="filter" fill="#36A96D"></rect>
-          <rect x="220" y="88" width="40" height="164" class="filter" fill="#E6B84A"></rect>
-          <rect x="296" y="74" width="44" height="178" class="filter" fill="#E68C3A"></rect>
-          <line x1="42" y1="252" x2="378" y2="252" class="axis"></line>
-          <line x1="42" y1="252" x2="42" y2="38" class="axis"></line>
-          <path d="M58 221 C88 201, 113 179, 142 154 C178 123, 205 90, 244 86 C281 82, 318 108, 354 124" class="model-soft"></path>
-          <path d="M58 221 C88 201, 113 179, 142 154 C178 123, 205 90, 244 86 C281 82, 318 108, 354 124" class="model"></path>
-          <circle cx="60" cy="222" r="6" class="point"></circle>
-          <circle cx="104" cy="185" r="6" class="point"></circle>
-          <circle cx="154" cy="145" r="6" class="point"></circle>
-          <circle cx="242" cy="87" r="6" class="point"></circle>
-          <circle cx="320" cy="111" r="6" class="point"></circle>
-          <circle cx="356" cy="126" r="6" class="point"></circle>
-        </svg>
-      </div>
+      <img src="images/showcase/sagui8_region8_bagpipes_sedfit.png" alt="Bagpipes SED fit for Sagui-8 region 8">
     </div>
     <div class="hero-affiliation">
       <img class="hero-note-logo" src="https://raw.githubusercontent.com/COINtoolbox/brand-assets/main/logo/COIN_2024_Logo.svg" alt="COIN logo">
@@ -227,6 +213,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="paint-maps">3. Paint maps</h3>
 <p>Paint fitted physical quantities back onto the segmentation map and optionally regularize them on the region-adjacency graph.</p>
 </section>
+</div>
+</section>
+<section id="showcase" class="level2">
+<h2 class="anchored" data-anchor-id="showcase">Showcase</h2>
+<p>The figures below show the intended output style: a regional SED fit, a segmentation map used as spatial support, and a fitted quantity painted back to the image plane.</p>
+<div class="gallery-grid">
+<div class="output-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/showcase/sagui8_region8_bagpipes_sedfit.png" class="img-fluid figure-img"></p>
+<figcaption>Bagpipes SED fit for Sagui-8 region 8 using flux-conserving SAGUI regional photometry.</figcaption>
+</figure>
+</div>
+<p><strong>Regional SED fit</strong></p>
+</div>
+<div class="output-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/showcase/sagui10_n20.png" class="img-fluid figure-img"></p>
+<figcaption>Sagui-10 segmentation map used as the spatial template for downstream regional SED fitting.</figcaption>
+</figure>
+</div>
+<p><strong>Segmentation support</strong></p>
+</div>
+<div class="output-card">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/showcase/sagui10_sigma_sfr.png" class="img-fluid figure-img"></p>
+<figcaption>Example physical-property map painted onto the Sagui-10 segmentation.</figcaption>
+</figure>
+</div>
+<p><strong>Painted property map</strong></p>
+</div>
 </div>
 </section>
 <section id="installation" class="level2">
@@ -300,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="backend-credit" class="level2">
 <h2 class="anchored" data-anchor-id="backend-credit">Backend credit</h2>
-<p>The current backend uses <a href="https://bagpipes.readthedocs.io/en/latest/">Bagpipes</a> for SED fitting. If you use the Bagpipes backend in a scientific analysis, cite Bagpipes according to the guidance in the official Bagpipes documentation, in addition to citing <code>saguiSED</code> and the segmentation package that produced the regional photometry.</p>
+<p>The current backend uses <a href="https://bagpipes.readthedocs.io/en/latest/">Bagpipes</a> for SED fitting. If you use the Bagpipes backend in a scientific analysis, cite Bagpipes according to the guidance in the official Bagpipes documentation, in addition to citing <code>saguiSED</code> and the segmentation package that produced the regional photometry. See <a href="references.html">References</a> for the citation list.</p>
 
 
 </section>

@@ -35,111 +35,6 @@
     "text": "Regularization layer\nGraph-Laplacian smoothing is implemented as a post-fit map estimator in saguiSED, because it acts on region-level physical properties rather than on the original image cube. The independent backend summaries remain available and should be retained for tables and uncertainty checks.\nmaps_smooth &lt;- smooth_sed_property_maps(\n  labels = seg$cluster_map,\n  fit = fit,\n  lambda = 3,\n  adjacency = \"queen\"\n)\nFor the paper, this distinction matters: the SED fitting is independent by region; the smoothed maps are spatially regularized summaries of those independent fits."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "saguiSED",
-    "section": "",
-    "text": "SED fitting for segmented photometry\n    saguiSED\n    \n      Fit region-integrated photometric SEDs produced by sagui,\n      then paint physical-property summaries back onto the segmentation map.\n      Heavy SED-fitting dependencies stay outside the core segmentation package.\n    \n    \n      Quick start\n      Workflows\n      Backends\n      GitHub\n    \n  \n  \n    \n      \n        \n          \n          \n          \n          \n          \n          \n          \n          \n          \n          \n          \n          \n          \n          \n          \n        \n      \n    \n    \n      \n      Part of the COIN Toolbox"
-  },
-  {
-    "objectID": "index.html#what-saguised-does",
-    "href": "index.html#what-saguised-does",
-    "title": "saguiSED",
-    "section": "What saguiSED does",
-    "text": "What saguiSED does\nsaguiSED is a companion package for the photometric SED-fitting stage of a segmented-galaxy workflow. The core sagui package decides how pixels are grouped and exports flux-conserving regional SEDs. saguiSED starts from those regional SED tables.\n\n\n1. Read regional photometry\nConvert a sagui regional SED table, or a compatible CSV, into a sagui_sed_table.\n\n\n2. Fit region SEDs\nCall an optional backend, currently Bagpipes, while keeping Python dependencies outside the core segmentation package.\n\n\n3. Paint maps\nPaint fitted physical quantities back onto the segmentation map and optionally regularize them on the region-adjacency graph."
-  },
-  {
-    "objectID": "index.html#installation",
-    "href": "index.html#installation",
-    "title": "saguiSED",
-    "section": "Installation",
-    "text": "Installation\ninstall.packages(\"remotes\")\nremotes::install_github(\"RafaelSdeSouza/saguiSED\")\nlibrary(saguiSED)\nThe Bagpipes backend is optional and runs through Python. Install Bagpipes following the official Bagpipes documentation.\ncheck_bagpipes()"
-  },
-  {
-    "objectID": "index.html#quick-start",
-    "href": "index.html#quick-start",
-    "title": "saguiSED",
-    "section": "Quick start",
-    "text": "Quick start\nStart from a flux-conserving regional SED table exported by sagui.\nsuppressPackageStartupMessages({\n  library(sagui)\n  library(saguiSED)\n})\n\nfilters &lt;- jwst_nircam_filter_set()\n\nsed &lt;- as_sagui_sed_table(\n  \"sagui10_region_seds_wide.csv\",\n  filter_set = filters,\n  unit = \"10nJy\",\n  redshift = 1.10,\n  n_pix_col = \"n_pix\"\n)\nFit all regions with the Bagpipes backend:\nfit &lt;- fit_region_seds(\n  sed,\n  backend = \"bagpipes\",\n  model = bagpipes_model(\n    sfh = \"exponential\",\n    dust = \"calzetti\",\n    metallicity = \"free\",\n    systematic_frac = 0.10\n  ),\n  out_dir = \"sagui10_bagpipes\"\n)\nPlot the regional SED fits:\nplot_sed_fit_mosaic(\n  fit,\n  normalize = \"none\",\n  transmission_height = 0.2,\n  point_size = 2.8\n)\nPaint fitted quantities back onto the segmentation:\nmaps &lt;- paint_sed_properties(seg$cluster_map, fit)\n\nsave_sed_property_map_pngs(\n  maps,\n  out_dir = \"property_maps_png\",\n  prefix = \"sagui10\"\n)\n\nwrite_property_cube(\n  maps,\n  path = \"sagui10_property_cube.fits\"\n)\nOptional graph-Laplacian smoothing is available as a post-processing step:\nmaps_smooth &lt;- smooth_sed_property_maps(\n  seg$cluster_map,\n  fit,\n  lambda = 3,\n  adjacency = \"queen\"\n)"
-  },
-  {
-    "objectID": "index.html#scope",
-    "href": "index.html#scope",
-    "title": "saguiSED",
-    "section": "Scope",
-    "text": "Scope\nsaguiSED is intentionally narrow. It is not the segmentation package and it is not a spectral-fitting package for IFU spectra. The spectroscopy-oriented pieces belong in capivara or capivara-specific extensions. saguiSED focuses on photometric regional SED fitting and map products."
-  },
-  {
-    "objectID": "index.html#backend-credit",
-    "href": "index.html#backend-credit",
-    "title": "saguiSED",
-    "section": "Backend credit",
-    "text": "Backend credit\nThe current backend uses Bagpipes for SED fitting. If you use the Bagpipes backend in a scientific analysis, cite Bagpipes according to the guidance in the official Bagpipes documentation, in addition to citing saguiSED and the segmentation package that produced the regional photometry."
-  },
-  {
-    "objectID": "examples.html",
-    "href": "examples.html",
-    "title": "Workflows",
-    "section": "",
-    "text": "This page shows how saguiSED is used after the segmentation step. The input is a regional photometry table: one row per region and one flux/error pair per filter."
-  },
-  {
-    "objectID": "examples.html#common-setup",
-    "href": "examples.html#common-setup",
-    "title": "Workflows",
-    "section": "Common setup",
-    "text": "Common setup\nsuppressPackageStartupMessages({\n  library(sagui)\n  library(saguiSED)\n  library(ggplot2)\n})\n\nsagui_palette &lt;- c(\"#213E60\", \"#94B6EF\", \"#F4F2EF\", \"#E68C3A\")"
-  },
-  {
-    "objectID": "examples.html#from-sagui-to-saguised",
-    "href": "examples.html#from-sagui-to-saguised",
-    "title": "Workflows",
-    "section": "From sagui to saguiSED",
-    "text": "From sagui to saguiSED\nRun the segmentation in sagui, then extract flux-conserving regional SEDs.\nseg &lt;- segment_regions(\n  input = cube,\n  Ncomp = 20,\n  use_starlet_mask = TRUE,\n  starlet_J = 5,\n  starlet_scales = 2:5\n)\n\nregional_seds &lt;- extract_region_sed(\n  cube = cube,\n  labels = seg$cluster_map,\n  band_values = band_wavelengths,\n  error_fallback = \"mad_sky\"\n)\nThe summed regional flux is the SED-fitting input. Mean SEDs can be useful as diagnostics, but the summed table preserves total flux.\nutils::write.csv(\n  regional_seds$flux_wide,\n  \"region_seds_wide.csv\",\n  row.names = FALSE\n)"
-  },
-  {
-    "objectID": "examples.html#filter-sets",
-    "href": "examples.html#filter-sets",
-    "title": "Workflows",
-    "section": "Filter sets",
-    "text": "Filter sets\nFor JWST/NIRCam photometry, use the NIRCam response curves bundled with sagui.\nfilters &lt;- jwst_nircam_filter_set()\nFor Rubin/LSST-style photometry, use the response curves bundled with saguiSED.\nfilters &lt;- lsst_filter_set()\nCustom filter curves are accepted through sed_filter_set().\nfilters &lt;- sed_filter_set(\n  throughput = \"my_filter_curves.csv\",\n  filters = c(\"F090W\", \"F115W\", \"F150W\", \"F200W\"),\n  name = \"custom\",\n  wavelength_unit = \"micron\"\n)\nThe throughput table must contain a filter name, wavelength, and throughput column. Additional effective-wavelength columns can be supplied when available."
-  },
-  {
-    "objectID": "examples.html#fitting-regional-seds",
-    "href": "examples.html#fitting-regional-seds",
-    "title": "Workflows",
-    "section": "Fitting regional SEDs",
-    "text": "Fitting regional SEDs\nConvert the wide table and call the backend.\nsed &lt;- as_sagui_sed_table(\n  \"region_seds_wide.csv\",\n  filter_set = filters,\n  unit = \"10nJy\",\n  redshift = 1.10,\n  n_pix_col = \"n_pix\"\n)\n\nfit &lt;- fit_region_seds(\n  sed,\n  backend = \"bagpipes\",\n  model = bagpipes_model(\n    sfh = \"exponential\",\n    dust = \"calzetti\",\n    metallicity = \"free\",\n    systematic_frac = 0.10\n  ),\n  out_dir = \"bagpipes_region_fits\"\n)\nThe fit object contains:\nnames(fit)\n\nsummary: one row per fitted region.\nmodel_photometry: observed and model photometry per filter.\nmodel_spectrum: model spectrum returned by the backend, when available.\nfilter_set: the response curves used by the backend."
-  },
-  {
-    "objectID": "examples.html#sed-fit-panels",
-    "href": "examples.html#sed-fit-panels",
-    "title": "Workflows",
-    "section": "SED fit panels",
-    "text": "SED fit panels\nplot_sed_fit_mosaic(\n  fit,\n  normalize = \"none\",\n  ncol = 4,\n  transmission_height = 0.2,\n  point_size = 2.8,\n  base_size = 12\n)\nFilter points are colored by wavelength. The model line is kept visually separate from the observed photometry so the plot remains readable on the website and in notebooks."
-  },
-  {
-    "objectID": "examples.html#property-maps",
-    "href": "examples.html#property-maps",
-    "title": "Workflows",
-    "section": "Property maps",
-    "text": "Property maps\nPaint fitted region summaries back to the image plane:\nmaps &lt;- paint_sed_properties(\n  seg$cluster_map,\n  fit,\n  properties = c(\"logMformed\", \"logSFR\", \"logsSFRformed\", \"age_gyr\", \"logZ_Zsun\", \"Av\")\n)\n\nsave_sed_property_map_pngs(\n  maps,\n  out_dir = \"property_maps_png\",\n  prefix = \"example\"\n)\n\nwrite_property_maps(\n  maps,\n  out_dir = \"property_maps_fits\",\n  prefix = \"example\"\n)\n\nwrite_property_cube(\n  maps,\n  path = \"example_property_cube.fits\"\n)\nThe FITS cube is useful for opening several derived quantities in tools such as SAOImageDS9. The CSV manifest records which property is stored in each plane."
-  },
-  {
-    "objectID": "examples.html#regularized-maps",
-    "href": "examples.html#regularized-maps",
-    "title": "Workflows",
-    "section": "Regularized maps",
-    "text": "Regularized maps\nIndependent region fits are the primary result. For map-level interpretation, saguiSED can also smooth fitted quantities on the region-adjacency graph.\nmaps_smooth &lt;- smooth_sed_property_maps(\n  seg$cluster_map,\n  fit,\n  lambda = 3,\n  adjacency = \"queen\",\n  unsmoothed_properties = \"fit_rms_sigma\"\n)\n\nsave_sed_property_map_pngs(\n  maps_smooth,\n  out_dir = \"property_maps_smooth_png\",\n  prefix = \"example\"\n)\n\nwrite_property_cube(\n  maps_smooth,\n  path = \"example_property_cube_smooth.fits\"\n)\nThis is a post-processing estimator. It does not refit the photometry and does not change the independent Bagpipes summaries."
-  },
-  {
-    "objectID": "examples.html#units",
-    "href": "examples.html#units",
-    "title": "Workflows",
-    "section": "Units",
-    "text": "Units\nas_sagui_sed_table() currently supports:\n\nJy\nuJy\nnJy\n10nJy\n\nUse the unit that matches the regional table. If the image cube is stored in 10 nJy, pass unit = \"10nJy\" rather than converting manually."
-  },
-  {
     "objectID": "backends.html",
     "href": "backends.html",
     "title": "Backends",
@@ -180,5 +75,138 @@
     "title": "Backends",
     "section": "Backend roadmap",
     "text": "Backend roadmap\nThe backend layer is meant to be replaceable. Bagpipes is the first backend because it is widely used and naturally supports photometric SED fitting. Future backends can follow the same pattern:\n\nread a sagui_sed_table\nwrite backend-specific inputs\nreturn a sagui_sed_fit object\nexpose comparable summary columns for map painting\n\nThis keeps the core sagui segmentation package small and lets SED-fitting dependencies evolve independently."
+  },
+  {
+    "objectID": "examples.html",
+    "href": "examples.html",
+    "title": "Workflows",
+    "section": "",
+    "text": "This page shows how saguiSED is used after the segmentation step. The input is a regional photometry table: one row per region and one flux/error pair per filter."
+  },
+  {
+    "objectID": "examples.html#common-setup",
+    "href": "examples.html#common-setup",
+    "title": "Workflows",
+    "section": "Common setup",
+    "text": "Common setup\nsuppressPackageStartupMessages({\n  library(sagui)\n  library(saguiSED)\n  library(ggplot2)\n})\n\nsagui_palette &lt;- c(\"#213E60\", \"#94B6EF\", \"#F4F2EF\", \"#E68C3A\")"
+  },
+  {
+    "objectID": "examples.html#from-sagui-to-saguised",
+    "href": "examples.html#from-sagui-to-saguised",
+    "title": "Workflows",
+    "section": "From sagui to saguiSED",
+    "text": "From sagui to saguiSED\nRun the segmentation in sagui, then extract flux-conserving regional SEDs.\n\n\n\n\nSagui-10 segmentation used as a representative regional support map.\n\n\n\nseg &lt;- segment_regions(\n  input = cube,\n  Ncomp = 20,\n  use_starlet_mask = TRUE,\n  starlet_J = 5,\n  starlet_scales = 2:5\n)\n\nregional_seds &lt;- extract_region_sed(\n  cube = cube,\n  labels = seg$cluster_map,\n  band_values = band_wavelengths,\n  error_fallback = \"mad_sky\"\n)\nThe summed regional flux is the SED-fitting input. Mean SEDs can be useful as diagnostics, but the summed table preserves total flux.\nutils::write.csv(\n  regional_seds$flux_wide,\n  \"region_seds_wide.csv\",\n  row.names = FALSE\n)"
+  },
+  {
+    "objectID": "examples.html#filter-sets",
+    "href": "examples.html#filter-sets",
+    "title": "Workflows",
+    "section": "Filter sets",
+    "text": "Filter sets\nFor JWST/NIRCam photometry, use the NIRCam response curves bundled with sagui.\nfilters &lt;- jwst_nircam_filter_set()\nFor Rubin/LSST-style photometry, use the response curves bundled with saguiSED.\nfilters &lt;- lsst_filter_set()\nCustom filter curves are accepted through sed_filter_set().\nfilters &lt;- sed_filter_set(\n  throughput = \"my_filter_curves.csv\",\n  filters = c(\"F090W\", \"F115W\", \"F150W\", \"F200W\"),\n  name = \"custom\",\n  wavelength_unit = \"micron\"\n)\nThe throughput table must contain a filter name, wavelength, and throughput column. Additional effective-wavelength columns can be supplied when available."
+  },
+  {
+    "objectID": "examples.html#fitting-regional-seds",
+    "href": "examples.html#fitting-regional-seds",
+    "title": "Workflows",
+    "section": "Fitting regional SEDs",
+    "text": "Fitting regional SEDs\nConvert the wide table and call the backend.\nsed &lt;- as_sagui_sed_table(\n  \"region_seds_wide.csv\",\n  filter_set = filters,\n  unit = \"10nJy\",\n  redshift = 1.10,\n  n_pix_col = \"n_pix\"\n)\n\nfit &lt;- fit_region_seds(\n  sed,\n  backend = \"bagpipes\",\n  model = bagpipes_model(\n    sfh = \"exponential\",\n    dust = \"calzetti\",\n    metallicity = \"free\",\n    systematic_frac = 0.10\n  ),\n  out_dir = \"bagpipes_region_fits\"\n)\nThe fit object contains:\nnames(fit)\n\nsummary: one row per fitted region.\nmodel_photometry: observed and model photometry per filter.\nmodel_spectrum: model spectrum returned by the backend, when available.\nfilter_set: the response curves used by the backend."
+  },
+  {
+    "objectID": "examples.html#sed-fit-panels",
+    "href": "examples.html#sed-fit-panels",
+    "title": "Workflows",
+    "section": "SED fit panels",
+    "text": "SED fit panels\nplot_sed_fit_mosaic(\n  fit,\n  normalize = \"none\",\n  ncol = 4,\n  transmission_height = 0.2,\n  point_size = 2.8,\n  base_size = 12\n)\nFilter points are colored by wavelength. The model line is kept visually separate from the observed photometry so the plot remains readable on the website and in notebooks.\n\n\n\n\nExample Bagpipes SED fit for Sagui-8 region 8 using SAGUI regional photometry."
+  },
+  {
+    "objectID": "examples.html#property-maps",
+    "href": "examples.html#property-maps",
+    "title": "Workflows",
+    "section": "Property maps",
+    "text": "Property maps\nPaint fitted region summaries back to the image plane:\n\n\n\n\nExample star-formation surface-density map painted back onto a SAGUI segmentation.\n\n\n\nmaps &lt;- paint_sed_properties(\n  seg$cluster_map,\n  fit,\n  properties = c(\"logMformed\", \"logSFR\", \"logsSFRformed\", \"age_gyr\", \"logZ_Zsun\", \"Av\")\n)\n\nsave_sed_property_map_pngs(\n  maps,\n  out_dir = \"property_maps_png\",\n  prefix = \"example\"\n)\n\nwrite_property_maps(\n  maps,\n  out_dir = \"property_maps_fits\",\n  prefix = \"example\"\n)\n\nwrite_property_cube(\n  maps,\n  path = \"example_property_cube.fits\"\n)\nThe FITS cube is useful for opening several derived quantities in tools such as SAOImageDS9. The CSV manifest records which property is stored in each plane."
+  },
+  {
+    "objectID": "examples.html#regularized-maps",
+    "href": "examples.html#regularized-maps",
+    "title": "Workflows",
+    "section": "Regularized maps",
+    "text": "Regularized maps\nIndependent region fits are the primary result. For map-level interpretation, saguiSED can also smooth fitted quantities on the region-adjacency graph.\nmaps_smooth &lt;- smooth_sed_property_maps(\n  seg$cluster_map,\n  fit,\n  lambda = 3,\n  adjacency = \"queen\",\n  unsmoothed_properties = \"fit_rms_sigma\"\n)\n\nsave_sed_property_map_pngs(\n  maps_smooth,\n  out_dir = \"property_maps_smooth_png\",\n  prefix = \"example\"\n)\n\nwrite_property_cube(\n  maps_smooth,\n  path = \"example_property_cube_smooth.fits\"\n)\nThis is a post-processing estimator. It does not refit the photometry and does not change the independent Bagpipes summaries.\n\n\n\n\nSagui-11 low-surface-brightness segmentation shown as a more complex support map."
+  },
+  {
+    "objectID": "examples.html#units",
+    "href": "examples.html#units",
+    "title": "Workflows",
+    "section": "Units",
+    "text": "Units\nas_sagui_sed_table() currently supports:\n\nJy\nuJy\nnJy\n10nJy\n\nUse the unit that matches the regional table. If the image cube is stored in 10 nJy, pass unit = \"10nJy\" rather than converting manually."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "saguiSED",
+    "section": "",
+    "text": "SED fitting for segmented photometry\n    saguiSED\n    \n      Fit region-integrated photometric SEDs produced by sagui,\n      then paint physical-property summaries back onto the segmentation map.\n      Heavy SED-fitting dependencies stay outside the core segmentation package.\n    \n    \n      Quick start\n      Workflows\n      Backends\n      GitHub\n    \n  \n  \n    \n      \n    \n    \n      \n      Part of the COIN Toolbox"
+  },
+  {
+    "objectID": "index.html#what-saguised-does",
+    "href": "index.html#what-saguised-does",
+    "title": "saguiSED",
+    "section": "What saguiSED does",
+    "text": "What saguiSED does\nsaguiSED is a companion package for the photometric SED-fitting stage of a segmented-galaxy workflow. The core sagui package decides how pixels are grouped and exports flux-conserving regional SEDs. saguiSED starts from those regional SED tables.\n\n\n1. Read regional photometry\nConvert a sagui regional SED table, or a compatible CSV, into a sagui_sed_table.\n\n\n2. Fit region SEDs\nCall an optional backend, currently Bagpipes, while keeping Python dependencies outside the core segmentation package.\n\n\n3. Paint maps\nPaint fitted physical quantities back onto the segmentation map and optionally regularize them on the region-adjacency graph."
+  },
+  {
+    "objectID": "index.html#showcase",
+    "href": "index.html#showcase",
+    "title": "saguiSED",
+    "section": "Showcase",
+    "text": "Showcase\nThe figures below show the intended output style: a regional SED fit, a segmentation map used as spatial support, and a fitted quantity painted back to the image plane.\n\n\n\n\n\nBagpipes SED fit for Sagui-8 region 8 using flux-conserving SAGUI regional photometry.\n\n\nRegional SED fit\n\n\n\n\n\nSagui-10 segmentation map used as the spatial template for downstream regional SED fitting.\n\n\nSegmentation support\n\n\n\n\n\nExample physical-property map painted onto the Sagui-10 segmentation.\n\n\nPainted property map"
+  },
+  {
+    "objectID": "index.html#installation",
+    "href": "index.html#installation",
+    "title": "saguiSED",
+    "section": "Installation",
+    "text": "Installation\ninstall.packages(\"remotes\")\nremotes::install_github(\"RafaelSdeSouza/saguiSED\")\nlibrary(saguiSED)\nThe Bagpipes backend is optional and runs through Python. Install Bagpipes following the official Bagpipes documentation.\ncheck_bagpipes()"
+  },
+  {
+    "objectID": "index.html#quick-start",
+    "href": "index.html#quick-start",
+    "title": "saguiSED",
+    "section": "Quick start",
+    "text": "Quick start\nStart from a flux-conserving regional SED table exported by sagui.\nsuppressPackageStartupMessages({\n  library(sagui)\n  library(saguiSED)\n})\n\nfilters &lt;- jwst_nircam_filter_set()\n\nsed &lt;- as_sagui_sed_table(\n  \"sagui10_region_seds_wide.csv\",\n  filter_set = filters,\n  unit = \"10nJy\",\n  redshift = 1.10,\n  n_pix_col = \"n_pix\"\n)\nFit all regions with the Bagpipes backend:\nfit &lt;- fit_region_seds(\n  sed,\n  backend = \"bagpipes\",\n  model = bagpipes_model(\n    sfh = \"exponential\",\n    dust = \"calzetti\",\n    metallicity = \"free\",\n    systematic_frac = 0.10\n  ),\n  out_dir = \"sagui10_bagpipes\"\n)\nPlot the regional SED fits:\nplot_sed_fit_mosaic(\n  fit,\n  normalize = \"none\",\n  transmission_height = 0.2,\n  point_size = 2.8\n)\nPaint fitted quantities back onto the segmentation:\nmaps &lt;- paint_sed_properties(seg$cluster_map, fit)\n\nsave_sed_property_map_pngs(\n  maps,\n  out_dir = \"property_maps_png\",\n  prefix = \"sagui10\"\n)\n\nwrite_property_cube(\n  maps,\n  path = \"sagui10_property_cube.fits\"\n)\nOptional graph-Laplacian smoothing is available as a post-processing step:\nmaps_smooth &lt;- smooth_sed_property_maps(\n  seg$cluster_map,\n  fit,\n  lambda = 3,\n  adjacency = \"queen\"\n)"
+  },
+  {
+    "objectID": "index.html#scope",
+    "href": "index.html#scope",
+    "title": "saguiSED",
+    "section": "Scope",
+    "text": "Scope\nsaguiSED is intentionally narrow. It is not the segmentation package and it is not a spectral-fitting package for IFU spectra. The spectroscopy-oriented pieces belong in capivara or capivara-specific extensions. saguiSED focuses on photometric regional SED fitting and map products."
+  },
+  {
+    "objectID": "index.html#backend-credit",
+    "href": "index.html#backend-credit",
+    "title": "saguiSED",
+    "section": "Backend credit",
+    "text": "Backend credit\nThe current backend uses Bagpipes for SED fitting. If you use the Bagpipes backend in a scientific analysis, cite Bagpipes according to the guidance in the official Bagpipes documentation, in addition to citing saguiSED and the segmentation package that produced the regional photometry. See References for the citation list."
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "If you use saguiSED, cite the SED-fitting backend you used, the segmentation package that produced the regional photometry, and the relevant method papers."
+  },
+  {
+    "objectID": "references.html#method-papers",
+    "href": "references.html#method-papers",
+    "title": "References",
+    "section": "Method papers",
+    "text": "Method papers\n\nsagui\nde Souza, R. S. et al. (2026). SAGUI: SED-based Segmentation of Multi-band Galaxy Images – Application to JADES in GOODS-South. arXiv:2604.18812. https://doi.org/10.48550/arXiv.2604.18812\n\n\ncapivara\nde Souza, R. S. et al. (2025). capivara: a spectral-based segmentation method for IFU data cubes. Monthly Notices of the Royal Astronomical Society, 539(4), 3166–3179. https://doi.org/10.1093/mnras/staf688\n\n\nBagpipes\nCarnall, A. C., McLure, R. J., Dunlop, J. S., & Davé, R. (2018). Inferring the star formation histories of massive quiescent galaxies with BAGPIPES: evidence for multiple quenching mechanisms. Monthly Notices of the Royal Astronomical Society, 480(4), 4379–4401. https://doi.org/10.1093/mnras/sty2169\nFor installation and backend-specific citation guidance, see the Bagpipes documentation."
+  },
+  {
+    "objectID": "references.html#suggested-bibtex",
+    "href": "references.html#suggested-bibtex",
+    "title": "References",
+    "section": "Suggested BibTeX",
+    "text": "Suggested BibTeX\n@misc{sagui2026,\n  author = {de Souza, Rafael S. and others},\n  title = {{SAGUI}: {SED}-based Segmentation of Multi-band Galaxy Images --\n           Application to {JADES} in {GOODS}-South},\n  year = {2026},\n  eprint = {2604.18812},\n  archivePrefix = {arXiv},\n  primaryClass = {astro-ph.IM},\n  doi = {10.48550/arXiv.2604.18812}\n}\n\n@article{capivara2025,\n  author = {de Souza, Rafael S. and others},\n  title = {capivara: a spectral-based segmentation method for {IFU} data cubes},\n  journal = {Monthly Notices of the Royal Astronomical Society},\n  volume = {539},\n  number = {4},\n  pages = {3166--3179},\n  year = {2025},\n  doi = {10.1093/mnras/staf688}\n}\n\n@article{bagpipes2018,\n  author = {Carnall, A. C. and McLure, R. J. and Dunlop, J. S. and Dav{\\'e}, R.},\n  title = {Inferring the star formation histories of massive quiescent galaxies\n           with {BAGPIPES}: evidence for multiple quenching mechanisms},\n  journal = {Monthly Notices of the Royal Astronomical Society},\n  volume = {480},\n  number = {4},\n  pages = {4379--4401},\n  year = {2018},\n  doi = {10.1093/mnras/sty2169}\n}\nWhen saguiSED receives a software DOI, cite that DOI in addition to the method and backend papers above."
   }
 ]
