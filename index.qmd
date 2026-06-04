@@ -21,25 +21,7 @@ title: ""
   </div>
   <div class="hero-visuals">
     <div class="hero-visual-card">
-      <div class="sed-card-preview" aria-label="Stylized SED fitting preview">
-        <svg viewBox="0 0 420 300" role="img">
-          <rect x="54" y="178" width="22" height="74" class="filter" fill="#5A45B8"/>
-          <rect x="93" y="150" width="26" height="102" class="filter" fill="#2F80ED"/>
-          <rect x="143" y="123" width="30" height="129" class="filter" fill="#36A96D"/>
-          <rect x="220" y="88" width="40" height="164" class="filter" fill="#E6B84A"/>
-          <rect x="296" y="74" width="44" height="178" class="filter" fill="#E68C3A"/>
-          <line x1="42" y1="252" x2="378" y2="252" class="axis"/>
-          <line x1="42" y1="252" x2="42" y2="38" class="axis"/>
-          <path d="M58 221 C88 201, 113 179, 142 154 C178 123, 205 90, 244 86 C281 82, 318 108, 354 124" class="model-soft"/>
-          <path d="M58 221 C88 201, 113 179, 142 154 C178 123, 205 90, 244 86 C281 82, 318 108, 354 124" class="model"/>
-          <circle cx="60" cy="222" r="6" class="point"/>
-          <circle cx="104" cy="185" r="6" class="point"/>
-          <circle cx="154" cy="145" r="6" class="point"/>
-          <circle cx="242" cy="87" r="6" class="point"/>
-          <circle cx="320" cy="111" r="6" class="point"/>
-          <circle cx="356" cy="126" r="6" class="point"/>
-        </svg>
-      </div>
+      <img src="images/showcase/sagui8_region8_bagpipes_sedfit.png" alt="Bagpipes SED fit for Sagui-8 region 8" />
     </div>
     <div class="hero-affiliation">
       <img class="hero-note-logo" src="https://raw.githubusercontent.com/COINtoolbox/brand-assets/main/logo/COIN_2024_Logo.svg" alt="COIN logo" />
@@ -76,6 +58,32 @@ outside the core segmentation package.
 
 Paint fitted physical quantities back onto the segmentation map and optionally
 regularize them on the region-adjacency graph.
+:::
+:::
+
+## Showcase
+
+The figures below show the intended output style: a regional SED fit, a
+segmentation map used as spatial support, and a fitted quantity painted back to
+the image plane.
+
+::: {.gallery-grid}
+::: {.output-card}
+![Bagpipes SED fit for Sagui-8 region 8 using flux-conserving SAGUI regional photometry.](images/showcase/sagui8_region8_bagpipes_sedfit.png)
+
+**Regional SED fit**
+:::
+
+::: {.output-card}
+![Sagui-10 segmentation map used as the spatial template for downstream regional SED fitting.](images/showcase/sagui10_n20.png)
+
+**Segmentation support**
+:::
+
+::: {.output-card}
+![Example physical-property map painted onto the Sagui-10 segmentation.](images/showcase/sagui10_sigma_sfr.png)
+
+**Painted property map**
 :::
 :::
 
@@ -183,4 +191,4 @@ The current backend uses [Bagpipes](https://bagpipes.readthedocs.io/en/latest/)
 for SED fitting. If you use the Bagpipes backend in a scientific analysis, cite
 Bagpipes according to the guidance in the official Bagpipes documentation, in
 addition to citing `saguiSED` and the segmentation package that produced the
-regional photometry.
+regional photometry. See [References](references.html) for the citation list.

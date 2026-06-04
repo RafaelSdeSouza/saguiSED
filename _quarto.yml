@@ -14,6 +14,8 @@ website:
         text: Backends
       - href: ecosystem.qmd
         text: Ecosystem
+      - href: references.qmd
+        text: References
     right:
       - icon: github
         href: https://github.com/RafaelSdeSouza/saguiSED
