@@ -25,6 +25,10 @@ sagui_palette <- c("#213E60", "#94B6EF", "#F4F2EF", "#E68C3A")
 
 Run the segmentation in `sagui`, then extract flux-conserving regional SEDs.
 
+::: {.image-card .medium-image}
+![Sagui-10 segmentation used as a representative regional support map.](images/showcase/sagui10_n20.png)
+:::
+
 ```r
 seg <- segment_regions(
   input = cube,
@@ -137,9 +141,17 @@ Filter points are colored by wavelength. The model line is kept visually
 separate from the observed photometry so the plot remains readable on the
 website and in notebooks.
 
+::: {.image-card .wide-image}
+![Example Bagpipes SED fit for Sagui-8 region 8 using SAGUI regional photometry.](images/showcase/sagui8_region8_bagpipes_sedfit.png)
+:::
+
 ## Property maps
 
 Paint fitted region summaries back to the image plane:
+
+::: {.image-card .medium-image}
+![Example star-formation surface-density map painted back onto a SAGUI segmentation.](images/showcase/sagui10_sigma_sfr.png)
+:::
 
 ```r
 maps <- paint_sed_properties(
@@ -197,6 +209,10 @@ write_property_cube(
 
 This is a post-processing estimator. It does not refit the photometry and does
 not change the independent Bagpipes summaries.
+
+::: {.image-card .medium-image}
+![Sagui-11 low-surface-brightness segmentation shown as a more complex support map.](images/showcase/sagui11_lsb_copula.png)
+:::
 
 ## Units
 
