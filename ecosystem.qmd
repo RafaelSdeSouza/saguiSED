@@ -1,0 +1,87 @@
+---
+title: "Ecosystem"
+toc: true
+toc-depth: 2
+toc-location: left
+---
+
+The goal is a modular family of packages rather than one package that does
+everything. Each package should have a narrow scientific responsibility and a
+clear data handoff.
+
+## Package roles
+
+::: {.feature-grid}
+::: {.feature-card}
+### sagui
+
+Photometric segmentation of broadband or medium-band image cubes. The main
+science product is a segmentation map and flux-conserving regional photometry.
+:::
+
+::: {.feature-card}
+### saguiSED
+
+SED fitting for the regional photometry exported by `sagui`. It handles filter
+sets, optional backend calls, SED-fit plots, physical-property maps, and
+post-fit map regularization.
+:::
+
+::: {.feature-card}
+### capivara
+
+Spectral segmentation and IFU-oriented workflows. Spectral fitting belongs in
+`capivara` or in a capivara-specific companion package, not in `saguiSED`.
+:::
+:::
+
+## Why separate packages?
+
+Keeping SED fitting outside `sagui` avoids forcing users to install heavy Python
+dependencies when they only need segmentation and regional photometry. It also
+makes it easier to add or replace SED-fitting backends without changing the core
+segmentation code.
+
+The same philosophy should hold for future packages:
+
+- segmentation packages define regions and extract fluxes
+- fitting packages infer physical quantities from those fluxes
+- visualization packages can build paper figures from saved products
+- survey-specific packages can encode filter sets and data-release conventions
+
+## Data handoff
+
+The handoff between packages should be boring and explicit: CSV tables for
+regional photometry and FITS files for image-plane maps.
+
+```r
+sed <- as_sagui_sed_table(
+  "region_seds_wide.csv",
+  filter_set = lsst_filter_set(),
+  unit = "nJy",
+  redshift = 0.2
+)
+```
+
+This keeps downstream SED fitting reproducible even when the segmentation
+package changes.
+
+## Regularization layer
+
+Graph-Laplacian smoothing is implemented as a post-fit map estimator in
+`saguiSED`, because it acts on region-level physical properties rather than on
+the original image cube. The independent backend summaries remain available and
+should be retained for tables and uncertainty checks.
+
+```r
+maps_smooth <- smooth_sed_property_maps(
+  labels = seg$cluster_map,
+  fit = fit,
+  lambda = 3,
+  adjacency = "queen"
+)
+```
+
+For the paper, this distinction matters: the SED fitting is independent by
+region; the smoothed maps are spatially regularized summaries of those
+independent fits.

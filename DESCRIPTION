@@ -11,6 +11,9 @@ Description: Provides optional SED-fitting helpers for SAGUI regional
     segmented regions and painting physical-property summaries back onto the
     image plane.
 License: MIT + file LICENSE
+URL: https://rafaelsdesouza.github.io/saguiSED/,
+    https://github.com/RafaelSdeSouza/saguiSED
+BugReports: https://github.com/RafaelSdeSouza/saguiSED/issues
 Encoding: UTF-8
 Depends:
     R (>= 4.1.0)
@@ -21,8 +24,12 @@ Imports:
     utils
 Suggests:
     FITSio,
+    knitr,
+    pkgdown,
+    rmarkdown,
     sagui,
     testthat (>= 3.0.0)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Config/testthat/edition: 3
+VignetteBuilder: knitr

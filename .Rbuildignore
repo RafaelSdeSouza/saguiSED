@@ -1,2 +1,12 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^_quarto\.yml$
+^_site$
+^index\.qmd$
+^examples\.qmd$
+^backends\.qmd$
+^ecosystem\.qmd$
+^styles\.css$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

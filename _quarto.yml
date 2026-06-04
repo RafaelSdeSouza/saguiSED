@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "saguiSED"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Quick start
+      - href: examples.qmd
+        text: Workflows
+      - href: backends.qmd
+        text: Backends
+      - href: ecosystem.qmd
+        text: Ecosystem
+    right:
+      - icon: github
+        href: https://github.com/RafaelSdeSouza/saguiSED
+        text: GitHub
+  page-footer:
+    left: "Part of the COIN Toolbox"
+    right: "Built with Quarto"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    include-in-header:
+      text: |
+        <link rel="stylesheet" href="styles.css?v=20260604a">
+    toc: false
