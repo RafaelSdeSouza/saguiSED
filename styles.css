@@ -260,7 +260,14 @@ a:hover {
 .output-card img,
 .image-card img {
   width: 100%;
+  max-height: 360px;
+  object-fit: contain;
   border-radius: 0.8rem;
+}
+
+.output-card p,
+.image-card p {
+  margin-bottom: 0.45rem;
 }
 
 .image-card {
@@ -309,5 +316,10 @@ pre.sourceCode {
   .example-strip,
   .two-grid {
     grid-template-columns: 1fr;
+  }
+
+  .output-card img,
+  .image-card img {
+    max-height: 300px;
   }
 }
