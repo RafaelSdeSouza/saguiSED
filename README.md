@@ -97,8 +97,8 @@ interpretation.
 ## Filter sets
 
 `saguiSED` supports custom filter curves through `sed_filter_set()` and bundles
-Rubin/LSST curves through `lsst_filter_set()`. JWST/NIRCam curves can be loaded
-from an installed `sagui` package through `jwst_nircam_filter_set()`.
+JWST/NIRCam curves through `jwst_nircam_filter_set()` and Rubin/LSST curves
+through `lsst_filter_set()`.
 
 ## Credits
 

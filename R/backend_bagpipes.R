@@ -3,10 +3,10 @@ backend_script <- function() {
 }
 
 default_nircam_throughput <- function() {
-  path <- system.file("extdata", "throughput_nircam.csv", package = "sagui")
+  path <- system.file("extdata", "throughput_nircam.csv", package = "saguiSED")
   if (!nzchar(path)) {
     stop(
-      "Could not find `throughput_nircam.csv` in the installed sagui package. ",
+      "Could not find bundled JWST/NIRCam throughput table. ",
       "Pass `throughput_path` explicitly.",
       call. = FALSE
     )

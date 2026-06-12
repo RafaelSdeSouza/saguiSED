@@ -113,16 +113,16 @@ sed_filter_set <- function(throughput,
   )
 }
 
-#' JWST/NIRCam filter set bundled with sagui
+#' JWST/NIRCam filter set bundled with saguiSED
 #'
 #' @param filters Optional NIRCam filters/order.
 #' @return A `sagui_filter_set` object.
 #' @export
 jwst_nircam_filter_set <- function(filters = NULL) {
-  path <- system.file("extdata", "throughput_nircam.csv", package = "sagui")
+  path <- system.file("extdata", "throughput_nircam.csv", package = "saguiSED")
   if (!nzchar(path)) {
     stop(
-      "Could not find `throughput_nircam.csv` in the installed sagui package. ",
+      "Could not find bundled JWST/NIRCam throughput table. ",
       "Use `sed_filter_set()` with an explicit throughput table instead.",
       call. = FALSE
     )
