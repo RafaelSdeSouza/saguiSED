@@ -1,26 +1,26 @@
 {
-    "id": "E12F062D",
-    "path": "~/Documents/GitHub/saguiSED/R/filter_set.R",
-    "project_path": "R/filter_set.R",
+    "id": "518D7FCC",
+    "path": "~/Documents/GitHub/saguiSED/R/paint_properties.R",
+    "project_path": "R/paint_properties.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "1070631334",
     "contents": "",
     "dirty": false,
-    "created": 1780346652110.0,
+    "created": 1780335473471.0,
     "source_on_save": false,
-    "relative_order": 5,
+    "relative_order": 1,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
         "cursorPosition": "0,0",
-        "scrollLine": "0"
+        "scrollLine": "52"
     },
     "folds": "",
-    "lastKnownWriteTime": 1780395191,
+    "lastKnownWriteTime": 1780346987,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1780395191,
+    "last_content_update": 1780346987,
     "read_only": false,
     "read_only_alternatives": []
 }

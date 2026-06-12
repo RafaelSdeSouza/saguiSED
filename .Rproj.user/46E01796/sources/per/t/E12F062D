@@ -1,26 +1,26 @@
 {
-    "id": "C324142E",
-    "path": "~/Documents/GitHub/saguiSED/R/plot_sed_fits.R",
-    "project_path": "R/plot_sed_fits.R",
+    "id": "E12F062D",
+    "path": "~/Documents/GitHub/saguiSED/R/filter_set.R",
+    "project_path": "R/filter_set.R",
     "type": "r_source",
-    "hash": "0",
+    "hash": "53035245",
     "contents": "",
     "dirty": false,
-    "created": 1780343152324.0,
+    "created": 1780346652110.0,
     "source_on_save": false,
-    "relative_order": 4,
+    "relative_order": 5,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
         "cursorPosition": "0,0",
-        "scrollLine": "212"
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1780406400,
+    "lastKnownWriteTime": 1780395191,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1780406400,
+    "last_content_update": 1780395191,
     "read_only": false,
     "read_only_alternatives": []
 }
