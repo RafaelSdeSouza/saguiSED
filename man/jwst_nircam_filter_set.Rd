@@ -2,7 +2,7 @@
 % Please edit documentation in R/filter_set.R
 \name{jwst_nircam_filter_set}
 \alias{jwst_nircam_filter_set}
-\title{JWST/NIRCam filter set bundled with sagui}
+\title{JWST/NIRCam filter set bundled with saguiSED}
 \usage{
 jwst_nircam_filter_set(filters = NULL)
 }
@@ -13,5 +13,5 @@ jwst_nircam_filter_set(filters = NULL)
 A \code{sagui_filter_set} object.
 }
 \description{
-JWST/NIRCam filter set bundled with sagui
+JWST/NIRCam filter set bundled with saguiSED
 }
